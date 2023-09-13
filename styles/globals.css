@@ -2,26 +2,32 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Lora:ital,wght@0,400;0,700;1,400&family=Open+Sans:wght@400;700&family=Merriweather:wght@400;700&family=Source+Sans+Pro:wght@400;700&display=swap');
+
+
+
+
+input {
+  @apply p-3    focus:outline-none   focus:border-blue-600 text-sm text-neutral-300;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+input:focus {
+  @apply   text-sm text-blue-500;
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+input::placeholder {
+  @apply text-blue-600/50 text-sm;
+}
+
+
+.sharp-shadow:hover {
+  box-shadow: -4px 4px 0px 0px #3B82F6;
+  border: 1px solid #2563EB;
+}
+
+.card-shadow {
+  box-shadow: 4px 4px 0px #7e7268;
+}
+.card-shadow:hover {
+  box-shadow: 4.5px 4.5px 0px #7e7268;
 }
