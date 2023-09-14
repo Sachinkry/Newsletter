@@ -13,9 +13,9 @@ const Posts = ({ posts }) => {
           }
   
           return (
-            <div key={index} className="border-b border-gray-200 pb-4 ">
-              <h2 className="text-xl text-neutral-900 font-semibold">{post.title}</h2>
-              {post.subtitle && <p className="text-sm text-gray-600">{post.subtitle}</p>}
+            <div key={index} className=" border newsletter-card-shadow border-cyan-700 p-3 rounded-md hover:scale-[1.003] hover:cursor-pointer ">
+              <h2 className="text-lg sm:text-xl font-opensans text-neutral-800 font-semibold">{post.title}</h2>
+              {post.subtitle && <p className="text-sm font-opensans text-gray-600">{post.subtitle}</p>}
               <div className="text-sm items-center space-x-1 text-gray-400 flex justify-between">
                 <span className="uppercase text-xs">{postDate.toLocaleDateString('en-US', dateOptions)}</span> 
                 <span className="text-xs uppercase">{post.author}</span>

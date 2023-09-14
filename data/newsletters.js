@@ -4,7 +4,7 @@ const newsletterData = [
       newsletterName: "TechTalk",
       authorName: "John Doe",
       description: "Your daily dose of tech insights.",
-      launchDate: "2021-05-23"
+      launchDate: "2023-05-23"
     },
     {
       logoSrc: "https://via.placeholder.com/150",
@@ -26,6 +26,13 @@ const newsletterData = [
       authorName: "Bob Brown",
       description: "Global news made simple.",
       launchDate: "2020-08-19"
+    },
+    {
+      logoSrc: "https://via.placeholder.com/150",
+      newsletterName: "Sage Panda",
+      authorName: "Sachin",
+      description: "writings on stuffs that dreams made of.",
+      launchDate: "2023-08-19"
     }
   ];
   

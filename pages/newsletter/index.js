@@ -12,8 +12,8 @@ export default function Home() {
   
   return (
     <Layout >
-      <div className='lg:px-16 md:px-10 sm:px-8 px-6  '>
-        <div className='h-screen  mt-12 '>
+      <div className='lg:px-16 md:px-10 sm:px-6 px-4  '>
+        <div className='min-h-[400px]  mt-12 '>
             <Posts posts={posts} />
 
         </div>

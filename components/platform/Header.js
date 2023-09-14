@@ -11,7 +11,7 @@ const router = useRouter();
 
 
   return (
-    <header className="z-50 flex flex-row justify-between bg-stone-200 px-4 md:px-12 lg:px-16 py-4 text-stone-800 items-center w-full">
+    <header className=" z-50 flex flex-row justify-between bg-stone-200 px-4 md:px-12 lg:px-16 py-4 text-stone-800 items-center w-full">
         
         {/* Logo and Image */}
         <div className="flex items-center">

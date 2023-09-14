@@ -10,7 +10,7 @@ export default function Layout({children}) {
     const router = useRouter()
 
     const checkActive = (path) => {
-      return router.pathname === path ? 'text-blue-600 underline underline-offset-8' : '';
+      return router.pathname === path ? 'text-cyan-600 underline underline-offset-8' : 'text-neutral-700';
     };
 
     const dummyData = {
@@ -35,20 +35,18 @@ export default function Layout({children}) {
             <div className="">
               <div className="flex justify-center space-x-6 p-2">
                 <div>
-                  <Link href={`/newsletter`} className={` text-sm ${checkActive('/newsletter')} font-roboto`}>
+                  <Link href={`/newsletter`} className={` text-sm  ${checkActive('/newsletter')} font-roboto`}>
                     Home
                   </Link>
                 </div>
                 <div>
-                  <Link className={`text-sm ${checkActive('/newsletter/archive')} font-roboto`} href="/newsletter/archive">
+                  <Link className={`text-sm  ${checkActive('/newsletter/archive')} font-roboto`} href="/newsletter/archive">
                     Archive
                   </Link>
                 </div>
               </div>
             </div>
                 {children}
-
-
             <Footer />
         </div>
     )

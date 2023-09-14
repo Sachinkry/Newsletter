@@ -35,11 +35,11 @@ export default function NewsletterHeader({ logo, name, description, authorName, 
   
 
   return (
-    <div className="flex flex-col items-center justify-center  bg-black bg-opacity-40 fixed inset-0 z-50" >
+    <div className="flex flex-col items-center justify-center  bg-black bg-opacity-40 fixed inset-0 z-50 " >
         
-      <div className="flex flex-col items-center justify-center  text-center bg-white p-8 sm:max-w-[410px] w-full rounded-lg shadow-lg ring-blue-600 m-4 sm:m-0 " ref={wrapperRef}>
+      <div className="flex flex-col items-center justify-center  text-center bg-white p-8 sm:max-w-[410px] w-full m-4 rounded-lg shadow-lg  m-4 sm:m-0 newsletter-card-shadow border-2 border-cyan-700" ref={wrapperRef}>
         <img src={logo} alt="Newsletter Logo" className="mb-4 w-32 h-32  mx-auto rounded-md"/>
-        <h1 className="text-3xl font-bold text-blue-600 mb-5">{name}</h1>
+        <h1 className="text-4xl font-bold text-cyan-600 mb-5">{name}</h1>
         <p className="text-md mb-1 text-neutral-500">{description}</p>
         <div className="text-xs mb-8 text-neutral-400">
           <span>By {authorName}</span> · <span>Launched {launchedDays} days ago</span>
@@ -48,11 +48,11 @@ export default function NewsletterHeader({ logo, name, description, authorName, 
           <input
             type="email"
             placeholder="Type your email..."
-            className=" py-2 text-blue-600/50 w-2/3 rounded-l-md border border-blue-600"
+            className="placeholder:text-cyan-700/60 focus:border-cyan-600 py-2 text-cyan-600/50 w-2/3 rounded-l-md border border-cyan-600"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
-          <button onClick={handleSubscribe} className="bg-blue-600 text-white py-2 border rounded-r-md border-blue-600  text-sm  w-1/3 ">
+          <button onClick={handleSubscribe} className="bg-cyan-600 text-white py-2 border rounded-r-md border-cyan-600  text-sm  w-1/3 ">
             Subscribe
           </button>
         </div>

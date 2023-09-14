@@ -8,6 +8,7 @@ const posts = [
     },
     {
       title: 'How to Eat Healthy',
+      subtitle: "The if and buts of eating habits and foods",
       author: 'Jane Doe',
       date: '2023-05-21'
     },

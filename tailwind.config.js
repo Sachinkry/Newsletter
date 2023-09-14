@@ -23,7 +23,8 @@ module.exports = {
         'lora': ['Lora', 'serif'],
         'opensans': ['Open Sans', 'sans-serif'],
         'merriweather': ['Merriweather', 'serif'],
-        'sourcesanspro': ['Source Sans Pro', 'sans-serif']
+        'sourcesanspro': ['Source Sans Pro', 'sans-serif'],
+        'poppins': ['Poppins', 'serif']
       }
     },
   },

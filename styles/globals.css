@@ -11,13 +11,13 @@ input {
   @apply p-3    focus:outline-none   focus:border-blue-600 text-sm text-neutral-300;
 }
 
-input:focus {
+/* input:focus {
   @apply   text-sm text-blue-500;
 }
 
 input::placeholder {
   @apply text-blue-600/50 text-sm;
-}
+} */
 
 
 .sharp-shadow:hover {
@@ -30,4 +30,8 @@ input::placeholder {
 }
 .card-shadow:hover {
   box-shadow: 4.5px 4.5px 0px #7e7268;
+}
+
+.newsletter-card-shadow {
+  box-shadow: 4px 4px 0px #809ea1;
 }
