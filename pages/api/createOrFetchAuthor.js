@@ -5,7 +5,7 @@ import Author from '@/models/Author';  // Replace with your actual path
 export default async function handler(req, res) {
   await connectDb();
 
-  const { email, name } = req.body || req.query;
+  const { email, name, authorId } = req.body || req.query;
 
   if (!email || !name) {
     return res.status(400).json({ error: 'Email and name are required' });
@@ -24,7 +24,14 @@ export default async function handler(req, res) {
 
   if (req.method === 'GET') {
     try {
-      const author = await Author.findOne({ email });
+      let author = null;
+
+      if (email) {
+        author = await Author.findOne({ email });
+      } else if (authorId) {
+        author = await Author.findById(authorId);
+      }
+
       if (author) {
         return res.status(200).json(author);
       } else {

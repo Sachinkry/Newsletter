@@ -15,7 +15,9 @@ const authorSchema = new Schema({
     required: true,
     unique: true
   },
-  
+  imageUrl: {
+    type: String
+  },
   createdDate: {
     type: Date,
     default: Date.now,

@@ -55,11 +55,7 @@ export default function Home() {
               Start Now
             </button>
           </div>
-          {/* <div className='w-full sm:w-1/2'>
-            <button className="bg-stone-700 text-stone-100 px-4 py-2 rounded shadow-md w-full md:max-w-[300px] card-shadow hover:scale-[1.003]">
-              Sign Up
-            </button>
-          </div> */}
+          
         </div>
       </div>
 

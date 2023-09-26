@@ -30,6 +30,19 @@ export const AuthProvider = ({ children }) => {
     }
   }, []);
 
+  const getAuthorById = useCallback(async (authorId) => {
+    try {
+      console.log("authorIdddddddddddd",authorId) // this is okay
+      // const response = await axios.get(`/api/authors/${authorId}`);
+      if (response.status === 200) {
+        return response.data;
+      }
+    } catch (err) {
+      console.error("Fetch by ID error:", err);
+      return null;
+    }
+  }, []);
+
   useEffect(() => {
     setUser(session?.user);
 
@@ -50,7 +63,7 @@ export const AuthProvider = ({ children }) => {
   }, [session, fetchAuthor, createAuthor]);
 
   return (
-    <AuthContext.Provider value={{ user, authorData }}>
+    <AuthContext.Provider value={{ user, authorData, getAuthorById }}>
       {children}
     </AuthContext.Provider>
   );

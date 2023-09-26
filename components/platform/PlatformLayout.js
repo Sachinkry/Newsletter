@@ -1,5 +1,5 @@
 import Header from "./Header";
-import NewsletterSubscribe from "../NewsletterSubscribe";
+import NewsletterSubscribe from "../newsletter/NewsletterSubscribe";
 import Footer from "./Footer";
 import Link from "next/link";
 import { useState } from 'react'
