@@ -1,7 +1,7 @@
 
 import Image from 'next/image';
 
-const NewsletterCard = ({ logoSrc, newsletterName, authorName, description, launchDate }) => {
+const NewsletterCard = ({ logo, name,description, launchDate }) => {
   const currentDate = new Date();
   const launchDateObj = new Date(launchDate);
   const timeDiff = Math.abs(currentDate - launchDateObj);
@@ -13,20 +13,20 @@ const NewsletterCard = ({ logoSrc, newsletterName, authorName, description, laun
       
       {/* Newsletter Logo */}
       <div className="relative w-16 h-16 rounded-md">
-        <Image src={logoSrc} layout="fill" objectFit="cover" alt="Newsletter logo" className="rounded-md" />
+        <Image src={"Ecosystem-amico.svg"} layout="fill" objectFit="cover" alt="Newsletter logo" className="rounded-md" />
       </div>
 
       {/* Newsletter Name */}
-      <h2 className="text-stone-900 text-2xl font-bold mt-2">{newsletterName}</h2>
+      <h2 className="mt-2 text-2xl font-bold text-stone-900">{name}</h2>
 
       {/* Author Name */}
-      <h3 className="text-stone-700 font-semibold text-md">{authorName}</h3>
+      <h3 className="font-semibold text-stone-700 text-md">{"Sachin Yadav"}</h3>
 
       {/* Description */}
-      <p className="text-stone-600 text-sm mt-1 line-clamp-1">{description}</p>
+      <p className="mt-1 text-sm text-stone-600 line-clamp-1">{description}</p>
 
       {/* Launched Info */}
-      <p className="text-stone-400 font-semibold text-xs mt-1">
+      <p className="mt-1 text-xs font-semibold text-stone-400">
         {currentDate.getFullYear() === launchDateObj.getFullYear() ? `Launched ${daysSinceLaunch} days ago` : `Launched on ${formattedDate}`}
       </p>
     </div>

@@ -5,7 +5,6 @@ const newsletterSchema = new Schema({
   _id: Schema.Types.ObjectId,
   logo: {
     type: String,
-    required: true
   },
   name: {
     type: String,
@@ -39,4 +38,12 @@ const newsletterSchema = new Schema({
   ]
 }); 
 
-module.exports = mongoose.model('Newsletter', newsletterSchema);
+let Newsletter;
+
+if (mongoose.models.Newsletter) {
+  Newsletter = mongoose.model('Newsletter');
+} else {
+  Newsletter = mongoose.model('Newsletter', newsletterSchema);
+}
+
+module.exports = Newsletter;

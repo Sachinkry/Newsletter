@@ -36,7 +36,7 @@ export default function Layout({children}) {
             </div>
             {isToggleBarVisible && <ToggleBar toggleBarVisibility={toggleBarVisibility} />}
 
-            {/* <Footer /> */}
+            <Footer />
         </div>
     )
 }

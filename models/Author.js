@@ -1,8 +1,11 @@
-import mongoose from "mongoose";
-const Schema = mongoose.Schema;
+import mongoose from 'mongoose';
+const { Schema } = mongoose;
 
 const authorSchema = new Schema({
-  _id: Schema.Types.ObjectId,
+  _id: {
+    type: String,
+    required: true
+  },
   name: {
     type: String,
     required: true
@@ -11,7 +14,19 @@ const authorSchema = new Schema({
     type: String,
     required: true,
     unique: true
-  }
+  },
+  
+  createdDate: {
+    type: Date,
+    default: Date.now,
+    immutable: true
+  },
+  newsletters: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Newsletter'
+    }
+  ]
 });
 
-module.exports = mongoose.model('Author', authorSchema);
+export default mongoose.models.Author || mongoose.model('Author', authorSchema);

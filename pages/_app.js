@@ -1,6 +1,9 @@
+import { NewsletterProvider } from '@/contexts/NewsletterContext';
+import { AuthProvider } from '@/contexts/AuthContext';
 import '@/styles/globals.css'
 import { ThemeProvider } from 'next-themes';
 import {Ubuntu, Merriweather, Lora, Poppins} from 'next/font/google'
+import { SessionProvider } from 'next-auth/react';
 
 const ubuntu = Ubuntu({
   weight: ['400'],
@@ -21,13 +24,18 @@ const poppins = Poppins({
   subsets: ['latin']
 })
 
-export default function App({ Component, pageProps }) {
+export default function App({ Component, pageProps: {session, ...pageProps} }) {
   return (
-    <ThemeProvider attribute='class' defaultTheme='dark'>
-
-    <main className={poppins.className}>
-      <Component {...pageProps} />
-    </main>
-    </ThemeProvider>
+    <SessionProvider session={session}>
+      <NewsletterProvider>
+        <AuthProvider>
+        {/* <ThemeProvider attribute='class' defaultTheme='dark'> */}
+            <main className={poppins.className}>
+              <Component {...pageProps} />
+            </main>
+        {/* </ThemeProvider> */}
+        </AuthProvider>
+      </NewsletterProvider>
+    </SessionProvider>
   )
 }

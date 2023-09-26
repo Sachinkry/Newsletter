@@ -1,4 +1,4 @@
-import Layout from "@/components/layouts/NewsletterLayout";
+import Layout from "@/components/newsletter/NewsletterLayout";
 
 
 export default function Archive () {

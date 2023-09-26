@@ -1,10 +1,10 @@
-import Layout from '@/components/layouts/NewsletterLayout'
+import Layout from '@/components/newsletter/NewsletterLayout'
 import Link from 'next/link'
 import { useState } from 'react'
 import { useRouter } from 'next/router'
 import posts from '@/data/posts'
-import Posts from '@/components/Posts'
-import NewsletterBottom from '@/components/NewsletterBottom'
+import Posts from '@/components/newsletter/Posts'
+import NewsletterBottom from '@/components/newsletter/NewsletterBottom'
 
 
 export default function Home() {
