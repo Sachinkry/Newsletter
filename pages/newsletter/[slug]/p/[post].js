@@ -1,6 +1,14 @@
 import NewsletterLayout from "@/components/newsletter/NewsletterLayout";
+import { useGetAuthorByNewsletter } from "@/lib/getAuthorByNewsletter";
+import { useRouter } from "next/router";
 
 export default function PostPage() {
+  const router = useRouter()
+  const {slug} = router.query
+
+  
+  
+
   const date = new Date(); // Replace with the actual date of the post
   const formattedDate = `${date.getDate()} ${date.toLocaleString('default', { month: 'short' }).toUpperCase()}, ${date.getFullYear()}`;
 
@@ -10,9 +18,9 @@ export default function PostPage() {
         <h1 className="text-3xl font-semibold md:text-5xl">Coming Soon</h1>
             <hr className="hidden my-2 sm:my-3 "/>
         <div className="flex items-center mt-2 sm:mt-4">
-          <img src="https://via.placeholder.com/150" alt="Author" className="w-8 h-8 mr-4 border-2 rounded-full sm:w-12 sm:h-12" /> {/* Replace with actual author image URL */}
+          <img src={slug ? useGetAuthorByNewsletter(slug)?.imageUrl : "https://via.placeholder.com/150"} alt="Author" className="w-8 h-8 mr-4 border-2 rounded-full sm:w-12 sm:h-12" /> {/* Replace with actual author image URL */}
           <div className="font-opensans">
-            <span className="text-xs font-semibold uppercase text-neutral-500">Sachin Yadav</span> {/* Replace with actual author name */}
+            <span className="text-xs font-semibold uppercase text-neutral-500">{slug ? useGetAuthorByNewsletter(slug)?.name: "Unknown"}</span> {/* Replace with actual author name */}
             <div className="text-xs text-gray-500">{formattedDate}</div>
           </div>
         </div>

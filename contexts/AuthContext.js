@@ -9,6 +9,7 @@ export const AuthProvider = ({ children }) => {
   const { data: session } = useSession();
   const [user, setUser] = useState(session?.user);
   const [authorData, setAuthorData] = useState(null);
+  const [authors, setAuthors] = useState([]);
 
   const fetchAuthor = useCallback(async (email, name) => {
     try {
@@ -30,18 +31,20 @@ export const AuthProvider = ({ children }) => {
     }
   }, []);
 
-  const getAuthorById = useCallback(async (authorId) => {
+  
+
+  const fetchAllAuthors = useCallback(async () => {  // New function
     try {
-      console.log("authorIdddddddddddd",authorId) // this is okay
-      // const response = await axios.get(`/api/authors/${authorId}`);
+      const response = await axios.get('/api/authors');  // API endpoint to get all authors
+      // console.log("authorsALL:::", response.data)
       if (response.status === 200) {
-        return response.data;
+        setAuthors(response.data);
       }
     } catch (err) {
-      console.error("Fetch by ID error:", err);
-      return null;
+      console.error("Fetch all authors error:", err);
     }
   }, []);
+  
 
   useEffect(() => {
     setUser(session?.user);
@@ -60,10 +63,11 @@ export const AuthProvider = ({ children }) => {
     }
 
     manageAuthor();
-  }, [session, fetchAuthor, createAuthor]);
+    fetchAllAuthors();
+  }, [session, fetchAuthor, createAuthor, fetchAllAuthors]);
 
   return (
-    <AuthContext.Provider value={{ user, authorData, getAuthorById }}>
+    <AuthContext.Provider value={{ user, authorData, authors }}>
       {children}
     </AuthContext.Provider>
   );

@@ -24,12 +24,7 @@ const newsletterSchema = new Schema({
     ref: 'Author',
     required: true
   },
-  subscribers: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: 'User'
-    }
-  ],
+  subscribers: [String],
   posts: [
     {
       type: Schema.Types.ObjectId,

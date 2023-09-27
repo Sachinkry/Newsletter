@@ -1,9 +1,11 @@
 import Image from 'next/image';
 import { useAuth } from '@/contexts/AuthContext';
 import { useState, useEffect } from 'react';
+import axios from 'axios';
+import getAuthorById from '@/lib/getAuthorById';
+
 
 const NewsletterCard = ({ logo, name,description, launchDate, author }) => {
-  const { getAuthorById } = useAuth();
   const [authorName, setAuthorName] = useState("")
 
   const currentDate = new Date();
@@ -12,17 +14,15 @@ const NewsletterCard = ({ logo, name,description, launchDate, author }) => {
   const daysSinceLaunch = Math.ceil(timeDiff / (1000 * 3600 * 24));
   const formattedDate = launchDateObj.toLocaleDateString('en-US', { day: 'numeric', month: 'short', year: 'numeric' });
 
-  useEffect(() => {
-    async function fetchAuthorName() {
-      console.log("authorId::::", author)
-      const authorData = await getAuthorById(author); 
-      if (authorData) {
-        console.log("authordata::::", authorData)
-        setAuthorName(authorData.name);
-      }
-    }
-    fetchAuthorName();
-  }, [getAuthorById]);
+  
+  // const authorname =  getAuthorById(author)
+  // console.log("authorname......",authorname)
+
+  // const getAuthorName = async() => {
+
+  // }
+  
+ 
 
   return (
     <div className="bg-white border-2 border-stone-600 rounded p-4 w-full h-full flex flex-col card-shadow hover:scale-[1.003] hover:cursor-pointer ">
@@ -36,7 +36,7 @@ const NewsletterCard = ({ logo, name,description, launchDate, author }) => {
       <h2 className="mt-2 text-2xl font-bold text-stone-900">{name}</h2>
 
       {/* Author Name */}
-      <h3 className="font-semibold text-stone-700 text-md">{authorName ? authorName:"Sachin Yadav"}</h3>
+      <h3 className="font-semibold text-stone-700 text-md">{author ? getAuthorById(author)?.name :"Sachin Yadav"}</h3>
 
       {/* Description */}
       <p className="mt-1 text-sm text-stone-600 line-clamp-1">{description}</p>

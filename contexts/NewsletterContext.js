@@ -46,6 +46,20 @@ export const NewsletterProvider = ({ children }) => {
     }
   };
 
+  // Subscribe user to a newsletter
+  const subscribeToNewsletter = async (email, newsletterId) => {
+    try {
+      console.log(`subscribing to ${newsletterId} with email: ${email}`)
+      const updatedNewsletter = await axios.post('/api/newsletter/subscribe', { email, newsletterId });
+      // Update state if needed
+      if(updatedNewsletter) {
+        console.log("here is updated newsletter::::", updateNewsletter)
+      }
+    } catch (err) {
+      setError(err);
+    }
+  };
+
   // Delete a newsletter
   const deleteNewsletter = async (id) => {
     try {
@@ -57,7 +71,7 @@ export const NewsletterProvider = ({ children }) => {
   };
 
   return (
-    <NewsletterContext.Provider value={{ newsletters, loading, error, addNewsletter, updateNewsletter, deleteNewsletter }}>
+    <NewsletterContext.Provider value={{ newsletters, loading, error, addNewsletter, updateNewsletter, subscribeToNewsletter,deleteNewsletter }}>
       {children}
     </NewsletterContext.Provider>
   );

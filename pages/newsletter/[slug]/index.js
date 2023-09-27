@@ -4,6 +4,7 @@ import Posts from '@/components/newsletter/Posts';
 import NewsletterBottom from '@/components/newsletter/NewsletterBottom';
 import { useNewsletter } from '@/contexts/NewsletterContext';
 import NewsletterLayout from '@/components/newsletter/NewsletterLayout';
+import getAuthorById from '@/lib/getAuthorById';
 
 const extractYearFromDate = (launchDate) => {
   const currentYear = new Date().getFullYear();
@@ -80,7 +81,7 @@ const MainContent = ({ newsletterData, isArchive}) => (
           <h2 className="text-lg font-semibold sm:text-xl font-opensans text-neutral-800">Coming soon</h2>
           <div className="flex items-center justify-between space-x-1 text-sm text-gray-400">
             <span className="text-xs uppercase">{extractYearFromDate(launchDate)}</span>
-            <span className="text-xs uppercase">{author || "Sachin Yadav"}</span>
+            <span className="text-xs uppercase">{getAuthorById(author)?.name || "Sachin Yadav"}</span>
           </div>
         </div>
       }

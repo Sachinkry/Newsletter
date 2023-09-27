@@ -6,6 +6,8 @@ export default async function handler(req, res) {
   await connectDb();
 
   const { email, name, authorId } = req.body || req.query;
+  console.log(req.method, req.query, req.body);
+
 
   if (!email || !name) {
     return res.status(400).json({ error: 'Email and name are required' });
@@ -28,9 +30,7 @@ export default async function handler(req, res) {
 
       if (email) {
         author = await Author.findOne({ email });
-      } else if (authorId) {
-        author = await Author.findById(authorId);
-      }
+      } 
 
       if (author) {
         return res.status(200).json(author);
