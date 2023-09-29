@@ -5,6 +5,7 @@ import { ThemeProvider } from 'next-themes';
 import {Ubuntu, Merriweather, Lora, Poppins} from 'next/font/google'
 import { SessionProvider } from 'next-auth/react';
 
+
 const ubuntu = Ubuntu({
   weight: ['400'],
   subsets: ['latin']

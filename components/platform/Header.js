@@ -16,11 +16,6 @@ const Header = ({toggleBarVisibility}) => {
     return route === router.pathname;
   };
 
-  if(session && authorData) {
-    console.log(session)
-    console.log("authorData:::", authorData)
-  }
-
   // if (status === "loading") return <p>Loading...</p>;
   // if (status === "unauthenticated") return <p>Not Authenticated</p>;
 

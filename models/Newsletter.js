@@ -2,9 +2,9 @@ import mongoose from "mongoose";
 const Schema = mongoose.Schema;
 
 const newsletterSchema = new Schema({
-  _id: Schema.Types.ObjectId,
   logo: {
     type: String,
+    required: true
   },
   name: {
     type: String,
@@ -17,7 +17,7 @@ const newsletterSchema = new Schema({
   launchDate: {
     type: Date,
     default: Date.now,
-    immutable:true
+    immutable: true
   },
   author: {
     type: Schema.Types.ObjectId,
@@ -31,10 +31,9 @@ const newsletterSchema = new Schema({
       ref: 'Post'
     }
   ]
-}); 
+});
 
 let Newsletter;
-
 if (mongoose.models.Newsletter) {
   Newsletter = mongoose.model('Newsletter');
 } else {

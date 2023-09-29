@@ -29,10 +29,13 @@ export const NewsletterProvider = ({ children }) => {
   // Add a new newsletter
   const addNewsletter = async (newsletter) => {
     try {
-      const response = await axios.post('/api/newsletters', newsletter);
+      console.log("newsletterrrrrrContextPage", newsletter)
+      const response = await axios.post('/api/newsletter', newsletter);
       setNewsletters([...newsletters, response.data]);
+      return response.data;  // return the saved newsletter
     } catch (err) {
       setError(err);
+      throw err;  // throw the error to be caught in handleSubmit
     }
   };
 

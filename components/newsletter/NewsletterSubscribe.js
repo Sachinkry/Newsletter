@@ -1,6 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
 import getAuthorById from '@/lib/getAuthorById';
 import { useNewsletter } from '@/contexts/NewsletterContext';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function NewsletterHeader({ showComponent, closePopup, newsletterData }) {
   const [email, setEmail] = useState("");
@@ -23,13 +25,6 @@ export default function NewsletterHeader({ showComponent, closePopup, newsletter
             document.removeEventListener("mousedown", handleClickOutside);
         };
   }, [closePopup]);
-
-  // useEffect(() => {
-  //   if (showPopup) {
-  //     const timer = setTimeout(() => setShowPopup(false), 3000);  // Hide after 3 seconds
-  //     return () => clearTimeout(timer);
-  //   }
-  // }, [showPopup]);
     
   if (!showComponent) {
     return null;
@@ -40,13 +35,15 @@ export default function NewsletterHeader({ showComponent, closePopup, newsletter
     try {
       console.log(`Subscribing email: ${email}:id::${newsletterData._id}`);
       await subscribeToNewsletter(email, newsletterData._id);
-      
+      closePopup();
+      toast.success(`Subscribed to ${newsletterData.name}`);
     } catch (error) {
       console.log(`Failed to subscribe: ${error}`);
-    } finally {
       closePopup();
+      toast.error(`Failed to subscribe: ${error.message}`);
     }
   };
+  
   
 
   const getFormattedLaunchTime = (launchDate) => {
@@ -70,9 +67,9 @@ export default function NewsletterHeader({ showComponent, closePopup, newsletter
     <>
       <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-black bg-opacity-40 " >
           
-        <div className="flex flex-col items-center justify-center  text-center bg-white p-8 sm:max-w-[410px] w-full rounded-lg shadow-lg  m-4 sm:m-0  border-2 border-cyan-700" ref={wrapperRef}>
-          <img src={ "https://substackcdn.com/image/fetch/w_96,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F8be50ff1-eb7d-4542-b5c0-d71f77ea1a03_256x256.png"} alt="Newsletter Logo" className="w-32 h-32 mx-auto mb-4 rounded-md"/>
-          <h1 className="mb-5 text-4xl font-bold text-cyan-600">{newsletterData.name || "Sage Panda"}</h1>
+        <div className="flex flex-col items-center justify-center  text-center bg-white p-8 sm:max-w-[410px] w-full rounded-lg shadow-lg  m-4 sm:m-0  sm:border-2 border-cyan-600" ref={wrapperRef}>
+          <img src={newsletterData.logo || ""} alt="Newsletter Logo" className="w-32 h-32 p-2 mx-auto mb-4 rounded-md ring-1 ring-cyan-500"/>
+          <h1 className="mb-5 text-4xl font-bold text-cyan-600">{newsletterData.name }</h1>
           <p className="mb-1 text-md text-neutral-500">{newsletterData?.description || "writings on stuffs that dreams are made of..."}</p>
           <div className="mb-8 text-xs text-neutral-400">
             <span>By {newsletterData?.author ? getAuthorById(newsletterData.author)?.name : "Unknown"}</span> • <span>Launched {getFormattedLaunchTime(newsletterData?.launchDate)}</span>

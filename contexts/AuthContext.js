@@ -2,6 +2,7 @@
 import { createContext, useContext, useState, useEffect, useCallback } from "react";
 import { useSession } from "next-auth/react";
 import axios from 'axios';
+import simplifyName from "@/lib/simplifyName";
 
 const AuthContext = createContext();
 
@@ -24,7 +25,8 @@ export const AuthProvider = ({ children }) => {
 
   const createAuthor = useCallback(async (email, name) => {
     try {
-      const response = await axios.post('/api/createOrFetchAuthor', { email, name });
+      const simplifiedName = simplifyName(name);
+      const response = await axios.post('/api/createOrFetchAuthor', { email, name: simplifiedName });
       setAuthorData(response.data);
     } catch (err) {
       console.error("Create error:", err);
@@ -48,23 +50,24 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     setUser(session?.user);
-
-
+  
     async function manageAuthor() {
       if (session?.user) {
         const { email, name } = session.user;
-
-        const fetchedAuthor = await fetchAuthor(email, name);
-
+        const simplifiedName = simplifyName(name);
+  
+        const fetchedAuthor = await fetchAuthor(email, simplifiedName);
+  
         if (fetchedAuthor === null) {
-          await createAuthor(email, name);
+          await createAuthor(email, simplifiedName);
         }
       }
     }
-
+  
     manageAuthor();
     fetchAllAuthors();
   }, [session, fetchAuthor, createAuthor, fetchAllAuthors]);
+  
 
   return (
     <AuthContext.Provider value={{ user, authorData, authors }}>

@@ -1,5 +1,6 @@
 import connectDB from "@/lib/connectDB"
 import Newsletter from "@/models/Newsletter"
+import mongoose from "mongoose";
 
 
 export default async function handler(req, res) {
@@ -19,16 +20,22 @@ export default async function handler(req, res) {
 
     case 'POST':
       try {
-        const { logo, name, description } = req.body;
+        const { logo, name, description, author } = req.body;
+
+        console.log("newsletterPostReq111111111::::", logo, description, author, name )
         const newNewsletter = new Newsletter({
+          _id: new mongoose.Types.ObjectId(),
           logo,
           name,
           description,
+          author: mongoose.Types.ObjectId.isValid(author) ? author : new mongoose.Types.ObjectId(author),
           launchDate: new Date()
         });
+        console.log("newsletterPostReq::::",typeof logo,typeof typeof description, typeof author, typeof name )
         const savedNewsletter = await newNewsletter.save();
         res.status(201).json(savedNewsletter);
       } catch (error) {
+        console.log(error)
         res.status(500).json({ error: 'Internal Server Error' });
       }
       break;

@@ -8,7 +8,7 @@
 
 
 input {
-  @apply p-3    focus:outline-none   focus:border-blue-600 text-sm text-neutral-300;
+  @apply p-3 text-sm focus:outline-none focus:border-blue-600 text-neutral-300;
 }
 
 /* input:focus {
@@ -16,7 +16,7 @@ input {
 }
 
 input::placeholder {
-  @apply text-blue-600/50 text-sm;
+  @apply text-sm text-blue-600/50;
 } */
 
 
@@ -34,4 +34,13 @@ input::placeholder {
 
 .newsletter-card-shadow {
   box-shadow: 4px 4px 0px #809ea1;
+}
+
+.showListItems {
+  list-style-type: disc;
+  padding-left: 1em;
+}
+
+.no-tailwind * {
+  all: revert;
 }
