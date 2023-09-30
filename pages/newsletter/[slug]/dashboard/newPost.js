@@ -22,7 +22,7 @@ const AddNewPost = () => {
 
   const handleSubmit = async () => {
     // Make API call to save the post
-    console.log("content", form.content)
+    console.log("content", form.content);
   };
 
   const toggleEditMode = () => {
@@ -32,7 +32,10 @@ const AddNewPost = () => {
   return (
     <NewsletterLayout>
       <div className="flex flex-col max-w-2xl min-h-screen gap-3 mx-auto">
-        <h1 className="text-4xl text-center text-neutral-700">New Post</h1>
+        <div className="flex items-center justify-between">
+          <h1 className="text-4xl font-semibold text-neutral-700">New Post</h1>
+          <button onClick={toggleEditMode}>{isEditMode ? 'View' : 'Edit'}</button>
+        </div>
         <div>
           <label className="font-semibold text-neutral-600">Title:</label>
           <input
@@ -53,23 +56,23 @@ const AddNewPost = () => {
             className="w-full p-2 mt-1 border rounded text-stone-500 focus:border-stone-600"
           />
         </div>
-        <div className="flex items-center justify-between">
-          <label className="font-semibold text-neutral-600">Content:</label>
-          <button onClick={toggleEditMode}>{isEditMode ? 'View' : 'Edit'}</button>
-        </div>
+        <label className="font-semibold text-neutral-600">Content:</label>
         <div className="w-full h-[470px] p-2 mt-1 border rounded text-stone-500 focus:border-stone-600">
           {isEditMode ? (
-            <ReactQuill style={{height: '400px'}} value={form.content} onChange={handleQuillChange} />
+            <ReactQuill 
+              style={{
+                height: '400px'
+                }} 
+              value={form.content} 
+              onChange={handleQuillChange} 
+            />
           ) : (
             <>
-            <div className="no-tailwind">
-            <div className="showListItems !list-disc !list-inside" dangerouslySetInnerHTML={{ __html: form.content }} />
+                <h1>{form.title}</h1>
+                <h3>{form.subtitle}</h3>
+            <div className="overflow-y-auto no-tailwind">
+            <div className="showListItems scrollable-div !list-disc !list-inside" dangerouslySetInnerHTML={{ __html: form.content }} />
             </div>
-            <ul className="!list-disc !list-inside">
-  <li>Item 1</li>
-  <li>Item 2</li>
-</ul>
-
             </>
 
           )}

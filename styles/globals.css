@@ -39,8 +39,14 @@ input::placeholder {
 .showListItems {
   list-style-type: disc;
   padding-left: 1em;
+  
 }
 
 .no-tailwind * {
   all: revert;
+}
+
+.scrollable-div {
+  overflow-y: auto;
+  max-height: 450px;
 }

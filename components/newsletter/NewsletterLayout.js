@@ -12,7 +12,7 @@ export default function NewsletterLayout({ children }) {
   const [newsletterData, setNewsletterData] = useState(null);
   const { newsletters } = useNewsletter();
   const [showPopup, setShowPopup] = useState(false);
-  const showTabs = !router.asPath.includes('/p/');
+  const showTabs = !router.asPath.includes('/p/') && !router.pathname.includes('dashboard');
 
   const handleSubscribeHeaderBtnClick = () => {
     setShowPopup(true);

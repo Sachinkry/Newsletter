@@ -22,7 +22,8 @@ const postSchema = new Schema({
   },
   publishedDate: {
     type: Date,
-    default: Date.now
+    default: Date.now,
+    immutable: true
   },
   updateDate: {
     type: Date,

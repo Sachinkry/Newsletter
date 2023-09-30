@@ -1,7 +1,7 @@
 import { NewsletterProvider } from '@/contexts/NewsletterContext';
 import { AuthProvider } from '@/contexts/AuthContext';
+import { PostProvider } from '@/contexts/PostContext';
 import '@/styles/globals.css'
-import { ThemeProvider } from 'next-themes';
 import {Ubuntu, Merriweather, Lora, Poppins} from 'next/font/google'
 import { SessionProvider } from 'next-auth/react';
 
@@ -30,11 +30,11 @@ export default function App({ Component, pageProps: {session, ...pageProps} }) {
     <SessionProvider session={session}>
       <NewsletterProvider>
         <AuthProvider>
-        {/* <ThemeProvider attribute='class' defaultTheme='dark'> */}
+          <PostProvider>
             <main className={poppins.className}>
               <Component {...pageProps} />
             </main>
-        {/* </ThemeProvider> */}
+          </PostProvider>
         </AuthProvider>
       </NewsletterProvider>
     </SessionProvider>
